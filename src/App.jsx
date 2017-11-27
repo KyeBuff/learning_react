@@ -1,15 +1,14 @@
 import React, { Component } from 'react';
 import './App.css';
-// import Stuff from './first-components/Stuff';
-import Container from './appify-me/Container';
-
+import Stuff from './first-components/Stuff';
+import FadeIn from './first-components/FadeIn';
 
 class App extends Component {
   render() {
     return (
-      <div className="App">
-      	<Container />
-      </div>
+			<FadeIn time="1000ms">
+				<Stuff />
+			</FadeIn>
     );
   }
 }

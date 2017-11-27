@@ -1,13 +1,16 @@
 import React from 'react';
 
-const people = ['Kye', 'Paul', 'Liz', 'Jonny'];
-
-const People = () => (
+const People = (props) => (
 	<ul>
-		{people.map((person, index) => {
+		{
+			props.names.map((person, index) => {
 			return (<li key={index}>{person}</li>)
 		})}
 	</ul>
 );
+
+People.defaultProps = {
+	names: ['Nothing to see here.'],
+}
 
 export default People;
