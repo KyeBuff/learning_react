@@ -1,12 +1,14 @@
 import React, { Component } from 'react';
 import './App.css';
-import Stuff from './Stuff';
+// import Stuff from './first-components/Stuff';
+import Container from './appify-me/Container';
+
 
 class App extends Component {
   render() {
     return (
       <div className="App">
-        <Stuff />
+      	<Container />
       </div>
     );
   }
