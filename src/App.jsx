@@ -1,13 +1,12 @@
 import React, { Component } from 'react';
 import './App.css';
-
-import LameGame from './state-challenges/LameGame';
+import TempConverter from './state-challenges/TempConverter';
 
 class App extends Component {
   render() {
     return (
     	<div className="container">
-				<LameGame aim={3} />
+    		<TempConverter />  
     	</div>
     );
   }
@@ -22,6 +21,10 @@ export default App;
 // <StepCounter max="100" step="5" />
 // <CatchMeIfYouCan jump="100" />
 // <Colours colours={colours} />
+// <LameGame aim={3} />
+// <List />  
+// <Adder />  
+
 
 
 // import Clicked from './state-challenges/Clicked';
@@ -32,3 +35,6 @@ export default App;
 // import CatchMeIfYouCan from './state-challenges/CatchMeIfYouCan';
 // import LameGame from './state-challenges/LameGame';
 // import Colours from './state-challenges/Colours';
+// import Length from './state-challenges/Length';
+// import List from './state-challenges/List';
+// import Adder from './state-challenges/Adder';
