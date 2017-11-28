@@ -1,14 +1,16 @@
 import React, { Component } from 'react';
 import './App.css';
-import Stuff from './first-components/Stuff';
-import FadeIn from './first-components/FadeIn';
+import Clicked from './state-challenges/Clicked';
+import Square from './first-components/Square';
+import ToggleText from './state-challenges/ToggleText';
 
 class App extends Component {
   render() {
     return (
-			<FadeIn time="1000ms">
-				<Stuff />
-			</FadeIn>
+    	<div>
+    		<Clicked />
+    		<Square color="blue" />
+    	</div>
     );
   }
 }
