@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
 import './App.css';
 
-import Die from './state-challenges/Die';
+import LameGame from './state-challenges/LameGame';
 
 class App extends Component {
   render() {
     return (
-    	<div>
-    		<Die />
+    	<div className="container">
+				<LameGame aim={3} />
     	</div>
     );
   }
@@ -21,7 +21,6 @@ export default App;
 // <Counter max="100" />
 // <StepCounter max="100" step="5" />
 // <CatchMeIfYouCan jump="100" />
-// <LameGame aim={3} />
 // <Colours colours={colours} />
 
 

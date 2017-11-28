@@ -1,0 +1,17 @@
+.btn {
+	display: block;
+	margin: 0 auto;
+}
+
+.lame-app {
+	background: hsl(140, 50%, 34%);
+	color: white;
+	margin: 5% auto;
+	padding: 2%;
+	width: 150px;
+}
+
+.lame-app p {
+	margin: 4% 0 0;
+	text-align: center;
+}

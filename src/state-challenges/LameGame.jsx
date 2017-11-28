@@ -1,14 +1,13 @@
 import React, { Component } from 'react';
+import '../Lame.css';
 
 class CatchMeIfYouCan extends Component {
 
 	constructor(props) {
 		super(props);
 		this.state = {
-			playing: false,
 			startTime: null,
 			nowTime: null,
-			result: false,
 		}
 
 		this.handleStart = this.handleStart.bind(this);
@@ -21,7 +20,6 @@ class CatchMeIfYouCan extends Component {
 
 		this.setState(
 			{
-				playing: true,
 				startTime: currMs,
 			}
 		);
@@ -34,24 +32,33 @@ class CatchMeIfYouCan extends Component {
 			this.setState(
 				{
 					nowTime: currMs,
-					playing: false,
-					result: true,
 				}
 			);
 
 	}
 
 	render() {
+		let {aim} = this.props;
+		let {startTime, nowTime} = this.state;
+
 		return (
-			<div>
-				{!this.state.playing ? (<button onClick={this.handleStart}>Start</button>) : null}
+			<div className="lame-app">
+				{!startTime ? (<button className="btn btn-primary" onClick={this.handleStart}>Start</button>) : null}
 
-				{this.state.playing ? (<button onClick={this.handleNow}>Now</button>) : null}
+				{startTime && !nowTime ? (<button className="btn btn-danger" onClick={this.handleNow}>Now</button>) : null}
 
-				<p>{this.state.playing ? this.props.aim + ' seconds.' : 'Click start to play.'}</p>
+				<p>
+					{
+						startTime && !nowTime ? 'Target is ' + aim + ' seconds.' : null
+					}
+				</p>
 
-				{ this.state.result ? 
-				(<p>Result: {((this.state.nowTime - this.state.startTime) / 1000).toFixed(1)}</p>) : null
+				{ nowTime ? 
+						(<p>Result: {' '} 
+				{
+					//Aim minus the difference between the time start was clicked and the time now was clicked
+					(aim - ((nowTime - startTime) / 1000)).toFixed(1)} seconds {}</p>
+					) : null
 				}
 			</div>
 		);
