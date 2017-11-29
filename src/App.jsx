@@ -1,14 +1,14 @@
 import React, { Component } from 'react';
 import './App.css';
-import Form from './lifting/Form';
+import Max from './lifting/Max';
 
-let fields = ["First Name", "Last Name", "Email"];
+const numbers = [24, 50, 100, 33, 50];
 
 class App extends Component {
   render() {
     return (
     	<div className="container">
-    	 	<Form fields={ fields } />
+    	 	<Max count={ numbers } max={1000} />
     	</div>
     );
   }
