@@ -1,39 +1,23 @@
 import React, { Component } from 'react';
 
-class Square extends Component {
-	constructor(props) {
-		super(props);
-		this.state = {
-			isBorderBlack: true,
+const Square = (props) => (
+	<div 
+		onClick={props.onClick}
+		style={
+			{
+				backgroundColor: props.color, 
+				height: props.divHeight, 
+				width: props.divWidth, 
+				borderWidth: '5px',
+				borderStyle:  'solid',
+				borderColor: props.borderColor,
+			}
 		}
-		this.handleClick = this.handleClick.bind(this);
-	}
-
-	handleClick() {
-		this.setState({ isBorderBlack: !this.state.isBorderBlack});
-	}
-
-	render() {
-		return (
-			<div 
-				onClick={this.handleClick}
-				style={
-					{
-						backgroundColor: this.props.color, 
-						height: this.props.divHeight, 
-						width: this.props.divWidth, 
-						borderWidth: '5px',
-						borderStyle:  'solid',
-						borderColor: this.state.isBorderBlack ? this.props.color : 'Black',
-					}
-				}
-				></div>	
-		)
-	}
-}
+		></div>	
+);
 
 Square.defaultProps = {
-	color: 'red',
+	color: 'tomato',
 	divHeight: '200px',
 	divWidth: '200px',
 	borderColor: 'Black',

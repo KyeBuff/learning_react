@@ -1,12 +1,14 @@
 import React, { Component } from 'react';
 import './App.css';
-import Squares from './lifting/Squares';
+import Form from './lifting/Form';
+
+let fields = ["First Name", "Last Name", "Email"];
 
 class App extends Component {
   render() {
     return (
     	<div className="container">
-    		<Squares />
+    	 	<Form fields={ fields } />
     	</div>
     );
   }

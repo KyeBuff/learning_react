@@ -7,14 +7,25 @@ class Squares extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
+			flipBorder: false,
 		}
+		this.flipBorder = this.flipBorder.bind(this);
+	}
 
+	flipBorder() {
+		this.setState({flipBorder: !this.state.flipBorder});
 	}
 
   render() {
   	return (
-  		<Square />
-  		<Square />
+  		<div>
+	  		<Square 
+	  			onClick={this.flipBorder} 
+	  			borderColor={this.state.flipBorder ? 'yellow' : 'darkgreen'} />
+	  		<Square 
+	  			onClick={this.flipBorder} 
+	  			borderColor={!this.state.flipBorder ? 'yellow' : 'darkgreen'} />
+  		</div>
   	);
   }
 }
