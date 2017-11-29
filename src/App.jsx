@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
 import './App.css';
-import TempConverter from './state-challenges/TempConverter';
+import Squares from './lifting/Squares';
 
 class App extends Component {
   render() {
     return (
     	<div className="container">
-    		<TempConverter />  
+    		<Squares />
     	</div>
     );
   }
@@ -24,6 +24,10 @@ export default App;
 // <LameGame aim={3} />
 // <List />  
 // <Adder />  
+// <TempConverter />   
+// <Buttons />
+
+
 
 
 
@@ -38,3 +42,5 @@ export default App;
 // import Length from './state-challenges/Length';
 // import List from './state-challenges/List';
 // import Adder from './state-challenges/Adder';
+// import TempConverter from './state-challenges/TempConverter';
+// import Buttons from './lifting/Buttons';
