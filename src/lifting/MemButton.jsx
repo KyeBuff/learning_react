@@ -1,10 +1,9 @@
 import React from 'react';
 
-const NumButton = (props) => (
+const OpButton = (props) => (
 
 	<button 
-		className="btn btn-primary"
-
+		className="btn btn-info"
 		onClick={() => {props.onClick(props.value)}}
 	>
 	{props.value}
@@ -12,4 +11,4 @@ const NumButton = (props) => (
 
 );
 
-export default NumButton;
+export default OpButton;

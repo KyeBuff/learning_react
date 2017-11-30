@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import NumButton from './NumButton.jsx';
 import OpButton from './OpButton.jsx';
+import MemButton from './MemButton.jsx';
 
 class Calculator extends Component {
 
@@ -13,11 +14,16 @@ class Calculator extends Component {
 			total: 0,
 			// Index allows us to target previous object to track value of operation
 			index: -1,
+			memory: {
+				value: null,
+			}
 		}
 		this.numOnClick = this.numOnClick.bind(this);
 		this.onOpClick = this.onOpClick.bind(this);
 		this.equals = this.equals.bind(this);
-
+		this.addToMemory = this.addToMemory.bind(this);
+		this.clearMemory = this.clearMemory.bind(this);
+		this.recallMemory = this.recallMemory.bind(this);
 	}
 
 	numOnClick(n) {
@@ -63,6 +69,13 @@ class Calculator extends Component {
 
 	calculate(numOb, currVal) {
 
+		//default object create to prevent memory undefined error
+		if(!numOb) {
+			numOb = {};
+			numOb.value = 0;
+			numOb.op = '+';
+		}
+
 		//take ob and currVal
 
 		//value value passed to total
@@ -82,6 +95,9 @@ class Calculator extends Component {
 			case '/': 
 				total /= currVal;
 				break;
+			default:
+				total = total;
+				break;
 		}	
 
 		return total;	
@@ -90,18 +106,57 @@ class Calculator extends Component {
 
 	equals() {
 
-		const finalOb = {
-			value: +this.state.currVal,
-		}
+		// const arr = this.state.outputArr.slice();
+		// const finalOb = {
+		// 	value: +this.state.currVal,
+		// }
+
+		// arr.push(finalOb);
 
 		//calculate again using tracked value in latest ob and currVal
 		this.setState(
 			{
 				total: this.calculate(this.state.outputArr[this.state.index], +this.state.currVal
-					)
+					),
+				// outputArr: arr,
 			}
 		);
 
+	}
+
+	addToMemory() {
+		this.setState(
+			{
+				memory: {
+					value: this.calculate(this.state.outputArr[this.state.index], +this.state.currVal
+					),
+				}
+			}
+		);
+	}
+
+	clearMemory() {
+		this.setState({
+			memory: {
+				value: null,
+			}
+		});
+	}
+
+	recallMemory() {
+
+		const arr = this.state.outputArr.slice();
+
+		let numOb = {
+			//if outputArr is empty, just assign the curret number to value
+			value: this.state.memory.value,
+			op: this.state.currOp,
+		}
+
+		//push object to array
+		arr.push(numOb);
+
+		this.setState({outputArr: arr, currVal: numOb.value})
 	}
 
   render() {
@@ -110,6 +165,21 @@ class Calculator extends Component {
   	const memoryBtns = ['M+', 'MC', 'MRC']
   	return (
   		<div>
+  			<div>
+	  			{
+	  				memoryBtns.map((el, i) => {
+	  					if(el === 'M+') {
+	  						return (<MemButton key={i} onClick={this.addToMemory} value={el}/>);
+	  					}
+	  					if(el === 'MC') {
+	  						return (<MemButton key={i} onClick={this.clearMemory} value={el}/>);
+	  					}
+	  					if(el === 'MRC') {
+	  						return (<MemButton key={i} onClick={this.recallMemory} value={el}/>);
+	  					}
+	  				})
+	  			}
+	  		</div>
 	  		<div>
 	  			{
 	  				numButtons.map((el, i) => {
