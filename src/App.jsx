@@ -1,14 +1,12 @@
 import React, { Component } from 'react';
 import './App.css';
-import Max from './lifting/Max';
-
-const numbers = [24, 50, 100, 33, 50];
+import Calculator from './lifting/Calculator';
 
 class App extends Component {
   render() {
     return (
     	<div className="container">
-    	 	<Max count={ numbers } max={1000} />
+    	 	<Calculator />
     	</div>
     );
   }
