@@ -19,3 +19,7 @@
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+
+#Local backups
+/src/lifting/Calculator-mem-backup.jsx
+/src/lifting/Calculator-working.jsx
