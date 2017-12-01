@@ -1,7 +1,11 @@
 import React, { Component } from 'react';
-import NumButton from './NumButton.jsx';
-import OpButton from './OpButton.jsx';
-import MemButton from './MemButton.jsx';
+import NumButton from './NumButton';
+import OpButton from './OpButton';
+import MemButton from './MemButton';
+import calcConfig from './calc-config/config.js';
+
+// Problem is the last item in the array is not taking the calcualted value when using memory
+//curr val is set to the memory value
 
 class Calculator extends Component {
 
@@ -12,11 +16,11 @@ class Calculator extends Component {
 			currVal: '',
 			currOp: null,
 			total: 0,
-			// Index allows us to target previous object to track value of operation
+			// Index allows us to target previous object in outputArr to operate on previous value
 			index: -1,
 			memory: {
 				value: null,
-			}
+			},
 		}
 		this.numOnClick = this.numOnClick.bind(this);
 		this.onOpClick = this.onOpClick.bind(this);
@@ -29,7 +33,7 @@ class Calculator extends Component {
 	numOnClick(n) {
 		// Build up currVal as string 
 		//Set op clicked to false to allow operation click
-		this.setState({currVal: this.state.currVal + n, opClicked: false});
+		this.setState({currVal: this.state.currVal + n, currOp: false, currOp: null,});
 	}
 
 	onOpClick(op) {
@@ -49,18 +53,17 @@ class Calculator extends Component {
 		}
 
 		//push object to array
-		if(!this.state.opClicked) {
+		if(!this.state.currOp) {
 			arr.push(numOb);
 		}
 
-		//set opClicked to true so that we can't use multiple ops
+		//set currOp to true so that we can't use multiple ops
 		//Increase index state so we are always tracking the previous ob in arr
 		this.setState(
 			{
 				outputArr: arr, 
 				currVal: '', 
 				currOp: op, 
-				opClicked: true, 
 				index: this.state.index + 1
 			}
 		);
@@ -78,29 +81,7 @@ class Calculator extends Component {
 
 		//take ob and currVal
 
-		//value value passed to total
-		let total = numOb.value;
-
-		//use numOb operator on currVal in switch
-		switch(numOb.op) {
-			case '+': 
-				total += currVal;
-				break;
-			case '-': 
-				total -= currVal;
-				break;
-			case 'X': 
-				total *= currVal;
-				break;
-			case '/': 
-				total /= currVal;
-				break;
-			default:
-				total = total;
-				break;
-		}	
-
-		return total;	
+		return calcConfig.operatorMap[numOb.op](numOb, currVal);
 
 	}
 
@@ -177,6 +158,7 @@ class Calculator extends Component {
 	  					if(el === 'MRC') {
 	  						return (<MemButton key={i} onClick={this.recallMemory} value={el}/>);
 	  					}
+	  					return null;
 	  				})
 	  			}
 	  		</div>

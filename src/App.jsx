@@ -1,46 +1,48 @@
 import React, { Component } from 'react';
 import './App.css';
-import Calculator from './lifting/Calculator';
+import {
+    BrowserRouter as Router,
+    Route,
+    Switch,
+} from "react-router-dom";
+import List from './state-challenges/List';
+import Clicked from './state-challenges/Clicked';
+import Buttons from './lifting/Buttons';
+import Adder from './state-challenges/Adder';
+import Square from './first-components/Square';
+import StepCounter from './state-challenges/StepCounter';
+import CatchMeIfYouCan from './state-challenges/CatchMeIfYouCan';
+import LameGame from './state-challenges/LameGame';
+import ToggleText from './state-challenges/ToggleText';
+import Nav from './router/Nav';
+import FourOhFour from './router/FourOhFour'
 
 class App extends Component {
   render() {
     return (
-    	<div className="container">
-    	 	<Calculator />
-    	</div>
+    	<Router>
+    		<div>
+    			<Nav />
+    			<Switch>
+		    		<Route path="/buttons" component={ Buttons } />
+		    		<Route path="/list" component={ List } />
+		    		<Route path="/clicked" component={ Clicked } />
+		    		<Route path="/adder" component={ Adder } />
+		    		<Route path="/toggle-text" render={ () => (<ToggleText initial="Hello" alternate="World" />)} />
+		    		<Route path="/catch" render={ () => (<CatchMeIfYouCan jump="100" />)} />
+		    		<Route path="/lame/:aim" render={ ({match}) => (<LameGame aim={match.params.aim} />)} />
+		    		<Route path="/square/:color" 
+		    					 render={ ({match}) => (<Square color={match.params.color}/>)} />
+
+		    		<Route path="/step-counter/:max/:step" 
+		    					 render={ ({match}) => (<StepCounter max={match.params.max} step={match.params.step} />)} />
+		    		<FourOhFour />
+	    		</Switch>
+    		</div>
+    	</Router>
     );
   }
 }
 
 export default App;
 
-// <Clicked />
-// <Square color="blue" />
-// <ToggleText initial="Hello" alternate="World" />
-// <Counter max="100" />
-// <StepCounter max="100" step="5" />
-// <CatchMeIfYouCan jump="100" />
-// <Colours colours={colours} />
-// <LameGame aim={3} />
-// <List />  
-// <Adder />  
-// <TempConverter />   
-// <Buttons />
-
-
-
-
-
-// import Clicked from './state-challenges/Clicked';
-// import Square from './first-components/Square';
-// import ToggleText from './state-challenges/ToggleText';
-// import Counter from './state-challenges/Counter';
-// import StepCounter from './state-challenges/StepCounter';
-// import CatchMeIfYouCan from './state-challenges/CatchMeIfYouCan';
-// import LameGame from './state-challenges/LameGame';
-// import Colours from './state-challenges/Colours';
-// import Length from './state-challenges/Length';
-// import List from './state-challenges/List';
-// import Adder from './state-challenges/Adder';
-// import TempConverter from './state-challenges/TempConverter';
-// import Buttons from './lifting/Buttons';

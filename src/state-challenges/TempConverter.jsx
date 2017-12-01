@@ -5,7 +5,7 @@ class Counter extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			celsius: null,
+			celsius: this.props.cels,
 			fahrenheit: null,
 		}
 
